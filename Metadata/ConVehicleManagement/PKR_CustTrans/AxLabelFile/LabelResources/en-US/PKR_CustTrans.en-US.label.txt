@@ -1,0 +1,5 @@
+﻿CustomerGroup=Customer Group 
+ ;Customer Group
+CustAccount=Customer Account
+ ;Customer Account
+CustgroupBy=Customer group by

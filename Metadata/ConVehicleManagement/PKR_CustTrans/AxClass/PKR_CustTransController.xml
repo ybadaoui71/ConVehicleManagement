@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>PKR_CustTransController</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// The <c>PKR_CustTransController</c> class is the controller class for the <c>PKR_CustTran</c> report.
+/// </summary>
+public class PKR_CustTransController extends SrsReportRunController
+{
+
+
+	
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        PKR_CustTransController controller =  new PKR_CustTransController();
+        controller.parmReportName(ssrsReportStr(PKR_CustTrans, CustomerAccount));
+        controller.parmArgs(_args);
+        controller.startOperation();
+
+		
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>preRunModifyContract</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Change the Contract before runing the report
+    /// </summary>
+    protected void preRunModifyContract()
+    {
+        PKR_CustTransContract contract = this.parmReportContract().parmRdpContract() as PKR_CustTransContract;
+		/*
+        if(contract.parmCustgroupBy()!=PKR_CustTransGroupby::CustGroup)
+		{
+            this.parmReportContract().parmReportName(ssrsReportStr(PKR_CustTrans, CustomerGroup));
+        }else
+        {
+            this.parmReportContract().parmReportName(ssrsReportStr(PKR_CustTrans, CustomerAccount));
+
+        }
+
+		*/
+
+
+        switch(contract.parmCustgroupBy())
+        {
+            case PKR_CustTransGroupby::CustGroup:
+                this.parmReportContract().parmReportName(ssrsReportStr(PKR_CustTrans, CustomerGroup));
+                break;
+            case PKR_CustTransGroupby::CustAccount:
+                this.parmReportContract().parmReportName(ssrsReportStr(PKR_CustTrans, CustomerAccount));
+                break;
+
+        }
+
+
+
+       // super();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

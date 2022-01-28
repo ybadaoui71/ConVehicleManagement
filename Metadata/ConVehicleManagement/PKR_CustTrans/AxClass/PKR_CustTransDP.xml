@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>PKR_CustTransDP</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[SRSReportParameterAttribute(ClassStr(PKR_CustTransContract))]
+class PKR_CustTransDP extends SRSReportDataProviderBase
+{
+    PKR_CustTransTmp transCustTmp;
+    CustAccount       custAccount;
+    CustGroupId       custGroupId;
+
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>getPRK_CustTransTmp</Name>
+				<Source><![CDATA[
+    [SrsReportDataSetAttribute(tableStr(PKR_CustTransTmp))]
+    public PKR_CustTransTmp getPRK_CustTransTmp()
+    {
+        select transCustTmp;
+        return transCustTmp;
+
+        // test Git
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processReport</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void processReport()
+    {
+        // casting Contract Klassen
+        PKR_CustTransContract contract  = this.parmDataContract() as PKR_CustTransContract;
+        custAccount                     = contract.parmCustAccount();
+        custGroupId                     = contract.parmCustGroup();
+        this.populateCustTrans();
+        //super();
+
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>populateCustTrans</Name>
+				<Source><![CDATA[
+    public void populateCustTrans()
+    {
+        // fieldShould be in order Sequence her is very important
+        CustAccountName  custAccountName;
+        CustTrans        custTrans;
+        CustTable        custTable;
+        CustGroup        custGroup;
+        insert_recordset transCustTmp(AccountNum,AmountMST,AmountCur,CurrencyCode,DocumentNum,DocumentDate,Invoice,TransType,txt,TransDate,Voucher,CustName,CustGroup,CustGroupDescription)
+            select AccountNum,AmountMST,AmountCur,CurrencyCode,DocumentNum,DocumentDate,Invoice,TransType,txt,TransDate,Voucher from custTrans
+            join Name from custAccountName
+                where custAccountName.AccountNum ==custTrans.AccountNum
+            join CustGroup from custTable
+                where custTable.AccountNum == custTrans.AccountNum
+                && (custGroupId =='' || custTable.CustGroup == custGroupId  )
+                && (custAccount =='' || custTable.AccountNum == custAccount )
+			join Name from custGroup
+			where CustGroup.CustGroup == custTable.CustGroup;
+ 
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

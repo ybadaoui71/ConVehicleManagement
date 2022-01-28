@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>PKR_CustTransContract</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Data Contract class for <c>PKR_CustTransRepos</c> SSRS report.
+/// </summary>
+/// <remarks>
+/// This is the Data Contract class for the <c>PKR_CustTransRepo</c> SSRS Report.
+/// </remarks>
+[
+    DataContractAttribute,
+    SysOperationContractProcessingAttribute(classStr(PKR_CustTransUIBuilder), SysOperationDataContractProcessingMode::CreateUIBuilderForRootContractOnly)
+    
+]
+public class PKR_CustTransContract
+{
+   // test123456789
+    CustAccount custAccount;
+    CustGroupId custGroupId;
+    PKR_CustTransGroupby custgroupBy;
+ 
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmCustAccount</Name>
+				<Source><![CDATA[
+    [
+        DataMemberAttribute('CustAccount'),
+        SysOperationLabelAttribute(literalStr("@SYS7149")),
+        SysOperationControlVisibility(false)]
+    public CustAccount parmCustAccount( CustAccount _custAccount = custAccount)
+    {
+        custAccount = _custAccount;
+        return custAccount;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmCustGroup</Name>
+				<Source><![CDATA[
+    [
+        DataMemberAttribute('CustGroup'),
+        SysOperationLabelAttribute(literalStr("@SYS11904")),
+        SysOperationControlVisibility(false)]
+
+    public CustGroupId parmCustGroup( CustGroupId _custGroupId = custGroupId)
+    {
+        custGroupId = _custGroupId;
+	 // test 123456789
+        return  custGroupId;
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmCustgroupBy</Name>
+				<Source><![CDATA[
+    [
+        DataMemberAttribute('CustgroupBy'),
+        SysOperationLabelAttribute(literalStr("@PKR_CustTrans:CustgroupBy")),
+        SysOperationControlVisibility(false)
+	]
+
+    public PKR_CustTransGroupby parmCustgroupBy(PKR_CustTransGroupby _custgroupBy = custgroupBy)
+    {
+        custgroupBy = _custgroupBy;
+
+        return custgroupBy;
+	}
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
