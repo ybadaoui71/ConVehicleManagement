@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1169
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "ConVehicleManagement (ISV) [Vehicle Management  ]", "ConVehicleManagement\ConVehicleManagement.rnrproj", "{33C83B47-ACC1-461A-8A7E-B4E2143DCE9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33C83B47-ACC1-461A-8A7E-B4E2143DCE9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C83B47-ACC1-461A-8A7E-B4E2143DCE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44AA5BAA-C731-4697-8FD1-385AEF5EB4A4}
+	EndGlobalSection
+EndGlobal
